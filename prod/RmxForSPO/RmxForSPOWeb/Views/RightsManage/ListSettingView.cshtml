@@ -1,0 +1,295 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListSettingView</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/msgbox.js"></script>
+    <style type="text/css">
+        .btn {
+            min-width: 6em;
+            padding: 7px 10px;
+            border: 1px solid #ababab;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body style="font-family:'Segoe UI', 'Segoe', Tahoma, Helvetica, Arial,sans-serif;">
+    <div id="nextlabs" style="background-color:#1a4994;width:100%;">
+        <img src="~/Content/NextLabs.png" />
+    </div>
+    <h2>NextLabs Rights Management Settings</h2>
+    <table style="width:100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+            <tr>
+                <td colspan="2" height="1"></td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <table summary="" role="presentation" width="100%" cellspacing="0" cellpadding="1" border="0">
+                        <tbody>
+                            <tr>
+                                <td style="padding-top: 4px;" valign="top" height="22">
+                                    <h3>Enable backup source file </h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Process backup source file after Rights Protection.</td>
+                                <td width="10" height="2"></td>
+                            </tr>
+                            <tr>
+                                <td width="150" height="19"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td valign="top" align="left">
+                    <table summary="" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td width="9px" height="17px"></td>
+                                <td height="17px" width="549.7px"></td>
+                                <td height="17px" width="10px"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="ms-authoringcontrols">
+                                    <table class="ms-authoringcontrols" summary="" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="11px" valign="top">
+                                                    <input id="backUpStatusCheckBox" type="checkbox" onclick="ShowInput()" />
+                                                </td>
+                                                <td>
+                                                    <label for="backUpStatusCheckBox">Enable Backup and input path.</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="20px" height="23px"></td>
+                                                <td class="ms-authoringcontrols">
+                                                    <input id="backUpPath" value="@ViewBag.backUpPath" type="text" style="width:360px;display:none" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" height="2px"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td width="10px" height="60.25px"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" height="1"></td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <table summary="" role="presentation" width="100%" cellspacing="0" cellpadding="1" border="0">
+                        <tbody>
+                            <tr>
+                                <td style="padding-top: 4px;" valign="top" height="22">
+                                    <h3>Project Name</h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td width="10" height="2"></td>
+                            </tr>
+                            <tr>
+                                <td width="150" height="19"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td valign="top" align="left">
+                    <table summary="" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td width="9px" height="17px"></td>
+                                <td height="17px" width="549.7px"></td>
+                                <td height="17px" width="10px"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="ms-authoringcontrols">
+                                    <table class="ms-authoringcontrols" summary="" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="11px" valign="top">
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="20px" height="23px"></td>
+                                                <td class="ms-authoringcontrols">
+                                                    <input value="@ViewBag.projectName" id="projectName" type="text" style="width:360px;" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" height="2px"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td width="10px" height="60.25px"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" height="1"></td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <table summary="" role="presentation" width="100%" cellspacing="0" cellpadding="1" border="0">
+                        <tbody>
+                            <tr>
+                                <td style="padding-top: 4px;" valign="top" height="22">
+                                    <h3>Project Tenant Name</h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td width="10" height="2"></td>
+                            </tr>
+                            <tr>
+                                <td width="150" height="19"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td valign="top" align="left">
+                    <table summary="" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td width="9px" height="17px"></td>
+                                <td height="17px" width="549.7px"></td>
+                                <td height="17px" width="10px"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="ms-authoringcontrols">
+                                    <table class="ms-authoringcontrols" summary="" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="11px" valign="top">
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="20px" height="23px"></td>
+                                                <td class="ms-authoringcontrols">
+                                                    <input value="@ViewBag.projectTenantName" id="projectTenantName" type="text" style="width:360px;" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" height="2px"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td width="10px" height="60.25px"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" height="70px"></td>
+                <td align="left" valign="top" height="70px"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table width="100%" cellspacing="0" cellpadding="0">
+                        <colgroup>
+                            <col width="99%" />
+                            <col width="1%" />
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td nowrap="nowrap">
+                                    <input type="button" class="btn" value="OK" onclick="ListSettingSubmit()" />
+                                    <span>
+                                        <input type="button" class="btn" value="Cancel" onclick="GoBackSite()" />
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+<script type="text/javascript">
+    var backUpEnable ='@ViewBag.backUpEnable';
+    if(backUpEnable=="true"){
+        $("#backUpStatusCheckBox").prop("checked", true);
+        $("#backUpPath").show();
+    } else {
+        $("#backUpStatusCheckBox").prop("checked", false);
+        $("#backUpPath").hide();
+    }
+    function ListSettingSubmit() {
+        var backUpPath = $("#backUpPath").val();
+        var projectName = $("#projectName").val();
+        var projectTenantName = $("#projectTenantName").val();
+        var checked = $("#backUpStatusCheckBox").is(':checked');
+        $.ajax({
+            type: "POST",
+            data: { "backUpPath": backUpPath, "projectName": projectName, "projectTenantName": projectTenantName, "backUpEnable": checked },
+            url: "/RightsManage/ListSettingSubmit?listId=" + getQueryString("listId") + "&SPHostUrl=" + getQueryString("SPHostUrl"),
+            success: function (data) {
+                alert(data);
+            },
+            error: function () {
+                alert("failed to save data!");
+            }
+        });
+    }
+    function GoBackSite() {
+        window.history.back(-1);
+    }
+    function ShowInput() {
+        var checked = $("#backUpStatusCheckBox").is(':checked');
+        if(checked){
+            $("#backUpPath").show();
+        } else {
+            $("#backUpPath").hide();
+        }
+    }
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+</script>

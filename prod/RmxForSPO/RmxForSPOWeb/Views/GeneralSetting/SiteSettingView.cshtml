@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Site property</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/siteSetting.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/zTreeStyle.css" />
+</head>
+<body>
+    <header class="header">
+        <a href="javascript:history.back(-1)">NextLabs Rights Management setup</a>
+        <span></span>
+        <label>Site property</label>
+    </header>
+    <section class="title">
+            <h2>Site property</h2>
+    </section>
+    <section class="evaluation-level">
+        <div class="left">
+            <h3>Evaluation level</h3>
+            <div class="desc">
+                <p>
+                    None indicates no site properties are used for evaluation.
+                </p>
+                <p>
+                    Subsite indicates that the properties of only the direct parent subsite are used for evaluation.
+                </p>
+                <p>
+                    Site Collection indicates that the properties of site collection are used for evaluation.
+                </p>
+                <p>
+                    Both indicates that the properties of site collection and subsite are used for evaluation.
+                </p>
+            </div>
+        </div>
+        <div class="right">
+            <div class="select-box">
+                <span>Level</span>
+                <select id="select-box">
+                    <option>None</option>
+                    <option>Subsite</option>
+                    <option>SiteCollection</option>
+                    <option>Both</option>
+                </select>
+            </div>
+        </div>
+    </section>
+    <section class="configuration">
+        <div class="left">
+            <h3>Site property configuration</h3>
+            <p>Select the properties to use for policy evaluation.</p>
+        </div>
+        <div class="right">
+            <div class="box" id="box">
+                <p class="site">Site</p>
+                <div class="select-box">
+                    <span class="site-name"></span>
+                    <span class="drop-btn"></span>
+                </div>
+                <div class="zTree-box">
+                    <ul id="regionZTree" class="ztree"></ul>
+                </div>
+                <p class="properties">Properties(<span class="select-num"></span>)</p>
+                <div class="property-name">
+                    <div class="title">
+                        <input type="checkbox" class="select-all" />
+                        <span>Property name</span>
+                    </div>
+                    <div class="list"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="btns">
+        <div id="btns">
+            <button class="save">Save</button>
+            <button class="cancel">Cancel</button>
+        </div>
+    </section>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/msgbox.js"></script>
+    <script>
+        var sitePropertyselectAllStatus = '@ViewBag.SitePropertyLevel';
+        var jsonData =@Html.Raw(Json.Encode(@ViewBag.data));
+        var data = JSON.parse(jsonData);
+    </script>
+    <script src="~/Scripts/siteSetting.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error -- NextLabs Rights Management</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body style="font-family:'Segoe UI', 'Segoe', Tahoma, Helvetica, Arial,sans-serif;">
+    <div class="container">
+@{
+    if (ViewBag.ErrorWhere == "GeneralSetting")
+    {
+        <div class="jumbotron">
+            <h2>You have no access to this page.</h2>
+        </div>
+    }
+    else
+    {
+        <div class="jumbotron">
+            <h2>An unexpected error has occurred.</h2>
+            <p>Please try again by launching the app installed on your site.</p>
+        </div>
+    }
+}
+    </div>
+</body>
+</html>

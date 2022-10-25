@@ -1,0 +1,16 @@
+##
+#
+# Produce version information
+#
+# Description:
+#   This file should be included in top-level Makefile
+# http://sharepoint/sites/support/release/Lists/Current%20Releases/AllItems.aspx
+#
+##
+
+VERSION_PRODUCT_RMX4SPO			= Rights Manager for Microsoft SharePoint Online
+
+VERSION_MAJOR_RMX4SPO			= 1
+VERSION_MINOR_RMX4SPO			= 0
+VERSION_MAINTENANCE_RMX4SPO		= 0
+VERSION_PATCH_RMX4SPO			= 0

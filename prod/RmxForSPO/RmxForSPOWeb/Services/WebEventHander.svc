@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RmxForSPOWeb.Services.WebEventHander" CodeBehind="WebEventHander.svc.cs" %>

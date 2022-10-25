@@ -1,0 +1,77 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Log in to SkyDrm";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        .ms-ButtonHeightWidth {
+            width: 6em;
+            font: 8pt tahoma;
+            height: 2.6em;
+            background-color: rgb(253, 253, 253);
+            margin-left: 80px;
+            font-family: "Segoe UI", Segoe, Tahoma, Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(171, 171, 171);
+            border-image: initial;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body style="font-family:'Segoe UI', 'Segoe', Tahoma, Helvetica, Arial,sans-serif;margin:8px">
+    <div id="nextlabs" style="background-color:#1a4994;width:100%;">
+        <img src="~/Content/NextLabs.png" />
+    </div>
+    <h2 style="font-weight:bold">NextLabs Rights Management</h2>
+    <div style="margin:0px auto">
+        <form action="/RightsManage/Login/submit?SPHostUrl=@ViewBag.SPHostUrl" method="post" onsubmit="return checkLoginInput();">
+            <h2>Log in to SkyDrm</h2>
+            <div class="form-group">
+                <label for="skyDrmUserName" style="display:inline;">User Name:</label>
+                <input type="text" class="form-control" id="skyDrmUserName" name="skyDrmUserName" style="display:inline;width:200px;"/>
+            </div>
+            <div class="form-group">
+                <label for="skyDrmPassword" style="display:inline;">Password:&nbsp;&nbsp;&nbsp;</label>
+                <input type="password" class="form-control" id="skyDrmPassword" name="skyDrmPassword" style="display:inline;width:200px"/>
+            </div>
+            <input type="submit" class="ms-ButtonHeightWidth" value="Log in">
+            <label ID="LoginErrorTip" Width="600"><font color="red">@ViewBag.errorMsg</font></label>
+            <input type="text" ID="nextAction" name="nextAction" Width="600" style="display:none;" value="@ViewBag.nextAction"></input>
+            <input type="text" ID="itemId" name="itemId" Width="600" style="display:none;" value="@ViewBag.itemId"></input>
+            <input type="text" ID="listId" name="listId" Width="600" style="display:none;" value="@ViewBag.listId"></input>
+            <input type="text" ID="listId" name="siteUrl" Width="600" style="display:none;" value="@ViewBag.siteUrl"></input>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function checkLoginInput()
+    {
+        var username = document.getElementById("skyDrmUserName").value;
+        if (username == "") {
+            alert("User Name can't be empty.");
+            return false;
+        }
+        var password = document.getElementById("skyDrmPassword").value;
+        if (password == "") {
+            alert("Password can't be empty.");
+            return false;
+        }
+        return true;
+    }
+
+</script>
+

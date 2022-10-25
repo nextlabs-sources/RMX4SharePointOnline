@@ -1,0 +1,114 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    font-family: Verdana,Arial,sans-serif;
+    color: #676767;
+    font-size: 8pt;
+}
+
+.header {
+    padding: 20px 0 5px;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: #676767;
+}
+
+.header a {
+    float: left;
+    font-size: 25px;
+    color: #003759;
+    margin-right: 15px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.header a:visited {
+    color: #B10069;
+}
+
+.header span {
+    float: left;
+    width: 0;
+    height: 0;
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #333;
+    margin-top: 12px;
+}
+
+.header label {
+    margin-left: 15px;
+    font-size: 25px;
+    color: #5D6878;
+}
+
+section {
+    display: flex;
+    margin-left: 155px;
+    margin-top: 50px;
+    font-size: 15px;
+    max-width: 1000px;
+}
+
+section .left {
+    width: 490px;
+}
+
+section .right {
+    margin-left: 65px;
+    display: flex;
+    align-items: center;
+}
+
+section.title {
+    margin-top: 30px;
+}
+
+section.title h2 {
+    font-size: 2.46em;
+}
+
+section h3{
+    padding-left: 6px;
+    font-size: 1em;
+    color: #525252;
+    margin-bottom: 5px;
+}
+
+section p {
+    width: 460px;
+    font-size: 12px;
+    color: #4C4C4C;
+    padding: 0 15px;
+    margin-bottom: 5px;
+}
+
+section.overview .right #zTree-box {
+    width: 360px;
+    height: 400px;
+    border: 1px solid #77778D;
+    overflow-x: auto;
+    overflow-y: scroll;
+}
+
+section.btns #btn-save, section.btns #btn-cancel {
+    display: inline-block;
+    font-size: 11px;
+    min-width: 6em;
+    padding: 7px 10px;
+    border: 1px solid #ABABAB;
+    background-color: #FFF;
+}
+
+section.btns #btn-cancel {
+    margin-left: 15px;
+}
+
+section.btns #btn-save:hover, section.btns #btn-cancel:hover {
+    background-color: rgb(230, 242, 250);
+    border-color: rgb(146, 192, 224);
+}

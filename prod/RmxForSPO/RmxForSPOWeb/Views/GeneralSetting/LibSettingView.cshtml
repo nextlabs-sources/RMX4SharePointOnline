@@ -1,0 +1,96 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Library settings</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/libSetting.css"/>
+</head>
+<body>
+    <header class="header">
+        <a href="javascript:history.back(-1)">NextLabs Rights Management setup</a>
+        <span></span>
+        <label>Library settings</label>
+    </header>
+    <section class="title">
+        <h2>Library settings</h2>
+        <h2>Rights protection settings</h2>
+    </section>
+    <div id="table">
+        <ul class="table">
+            <li class="desc">
+                <div>
+                    <h4>Batch processing</h4>
+                    <p>Run NextLabs rights protection in batch mode.Click on the slider to run the batch mode.</p>
+                    <p id="BatchModeInfo"></p>
+                    <a id="failedFileLink">Click this link to view unencrypted items.</a>
+                </div>
+                <div>
+                    <h4>Apply protection to all versions</h4>
+                    <p>Protect all versions of the file, from the oldest to the newest versions.Click on the slider to enable this option.</p>
+                </div>
+                <div>
+                    <h4>Delete source file</h4>
+                    <p>Delete the source file after the rights protection process is completed.Click on the slider to enable this option.</p>
+                </div>
+                <div>
+                    <h4>Column configuration</h4>
+                    <p>Select the columns to use for policy evaluation.</p>
+                </div>
+            </li>
+            <li class="operation">
+                <div>
+                    <label class='switch'>
+                        <input type='checkbox' id="batchModeCheckBox">
+                        <span></span>
+                    </label>
+                </div>
+                <div>
+                    <label class='switch'>
+                        <input type='checkbox' id="historyVersionCheckBox">
+                        <span></span>
+                    </label>
+                </div>
+                <div>
+                    <label class='switch'>
+                        <input type='checkbox' id="sourceFileCheckBox">
+                        <span></span>
+                    </label>
+                </div>
+                <div>
+                    <div id="box">
+                        <div class="title">
+                            <input type="checkbox" class="select-all" />
+                            <span>Column display name(InternalName)</span>
+                        </div>
+                        <div class="list"></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="btns">
+        <button class="save">Save</button>
+        <button class="cancel">Cancel</button>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/msgbox.js"></script>
+    <script>
+        var isList = '@ViewBag.isList';
+        var deleteSourceFile = '@ViewBag.deleteSourceFile';
+        var historyVersion = '@ViewBag.historyVersion';
+
+        var jsonData = @Html.Raw(Json.Encode(@ViewBag.columns));
+
+        var batchModeRunning = '@ViewBag.BatchModeRunning';
+        var BatchModeStatus = '@ViewBag.BatchModeStatus';
+        var failedFileCount = '@ViewBag.BatchModeFailFilesCount';
+    </script>
+    <script src="~/Scripts/libSetting.js"></script>
+</body>
+</html>

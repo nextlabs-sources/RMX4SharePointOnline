@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Activation</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="~/Content/activate.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/msgbox.css" />
+</head>
+<body>
+    <header class="header">
+        <a href="javascript:history.back(-1)">NextLabs Rights Management setup</a>
+        <span></span>
+        <label>Activation</label>
+    </header>
+    <section class="title">
+        <h2>Activation</h2>
+    </section>
+    <section class="desc">
+       <div class="left">
+           <h3>Description</h3>
+           <p>NextLabs Rights Management (RMX) can be activated or deactivated at the list level. Select the list that you want to activate or deactivate and click Save.</p>
+       </div>
+    </section>
+    <section class="overview">
+        <div class="left">
+            <h3>Overview</h3>
+            <p>Select the list that you want to activate or deactivate.</p>
+        </div>
+        <div class="right">
+            <div id="zTree-box">
+                <ul id="regionZTree" class="ztree"></ul>
+            </div>
+        </div>
+    </section>
+ 
+    <section class="btns">
+        <div class="left">
+            <button id="btn-save" onclick="EnforceEntitySubmit()">Save</button>
+            <button id="btn-cancel">Cancel</button>
+        </div>
+    </section>
+
+
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/msgbox.js"></script>
+    <script>
+        var jsonData =@Html.Raw(Json.Encode(@ViewBag.data));
+        var data = JSON.parse(jsonData);
+    </script>
+    <script src="~/Scripts/activate.js"></script>
+</body>
+</html>

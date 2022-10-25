@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction Id="c181ef37-e6fc-45e7-a677-b68e75050490.MenuItemCustomAction"
+              RegistrationType="ContentType"
+              RegistrationId="0x12E20DB86B2C4EDE92B0B6250CF9AEC1"
+              Location="EditControlBlock"
+              Sequence="10002"
+              Title="RMX DUMB ITEM">
+    <UrlAction Url="~remoteAppUrl/RightsManage/View?{StandardTokens}&amp;listId={ListId}&amp;itemId={ItemId}&amp;siteUrl={SiteUrl}" />
+  </CustomAction>
+</Elements>

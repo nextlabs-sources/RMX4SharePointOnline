@@ -1,0 +1,864 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "NextLabs Rights Management settings";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        .ms-ButtonHeightWidth {
+            width: 6em;
+            font: 8pt tahoma;
+            height: 2.6em;
+            background-color: rgb(253, 253, 253);
+            margin-left: 10px;
+            font-family: "Segoe UI", Segoe, Tahoma, Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(171, 171, 171);
+            border-image: initial;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="~/Content/tabs.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/zTreeStyle.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/msgbox.css"/>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/tabs.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/msgbox.js"></script>
+</head>
+<body style="font-family:'Segoe UI', 'Segoe', Tahoma, Helvetica, Arial,sans-serif;">
+    <div id="nextlabs" style="background-color:#1a4994;width:100%;">
+        <img src="~/Content/NextLabs.png" />
+    </div>
+    <h2>NextLabs Rights Management configuration</h2>
+    <iframe id="fraSubmit" name="fraSubmit" style="display:none;" scrolling="yes" noresize src="about:blank"></iframe>
+    <input id="domainValue" style="display:none;" value="@ViewBag.domainValue"/>
+    <div class='tabs' id="tabs">
+        <ul class='horizontal'>
+            <li rel="tab-1" class="selectActive">Activation</li>
+            <li rel="tab-2">Configuration</li>
+            <li rel="tab-3">Site property</li>
+        </ul>
+        <div rel='tab-1' class="tabsdiv">
+            <form id="activateSettingForm" method="post" action="~/GeneralSetting/EnforceEntityFormSubmit" target="fraSubmit">
+                <div>
+                    <h2>Description </h2>
+                    <p style="width:700px;">NextLabs Rights Management (RMX) can be activated or deactivated at the list level. Select the list that you want to activate or deactivate and click Save.</p>
+                </div>
+                <div style="display:-webkit-box;position: absolute;bottom: 45px;top: 320px;">
+                    <div style="width:300px">
+                        <h2>Overview</h2>
+                        <p>Select the list that you want to activate or deactivate.</p>
+                    </div>
+                    <ul id="regionZTree" class="ztree" style="margin-left:20px;margin-top:20px;overflow: scroll;"></ul>
+                </div>
+                <div style="position: absolute;bottom: 4px;">
+                    <input type="button" style="margin-left: 580px;" class="ms-ButtonHeightWidth" onclick="EnforceEntitySubmit()" value="Save" />
+                </div>
+            </form>
+        </div>
+        <div rel='tab-2' class="tabsdiv">
+            <form id="generalSettingForm" method="post" action="~/GeneralSetting/GeneralSettingFormSubmit" target="fraSubmit">
+                <TABLE border="0" cellSpacing="0" cellPadding="0">
+                    <TBODY>
+                        <TR>
+                            <TD height="1" colSpan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD valign="top">
+                                <TABLE style="width:700px;" role="presentation" border="0" cellSpacing="0" cellPadding="1" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD height="22" vAlign="top" style="padding-top: 4px">
+                                                <H3>Java PC Configuration </H3>
+                                            </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>Configure the host and port for CloudAz or Control Center Policy Controller REST API.</TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                            <TD align="left" vAlign="top">
+                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD width="9px"></TD>
+                                            <TD></TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                            <TD>
+                                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                                    <TBODY>
+                                                        <TR>
+                                                            <TD colSpan="2"></TD>
+                                                        </TR>
+                                                        <TR>
+                                                            <TD></TD>
+                                                        </TR><!-- End Right_Text -->
+                                                        <TR>
+                                                            <TD width="11px"></TD>
+                                                            <TD width="99%">
+                                                                <TABLE cellSpacing="0" cellPadding="0">
+                                                                    <TBODY>
+                                                                        <TR>
+                                                                            <TD style="padding-bottom: 5px; padding-left: 5px"></TD>
+                                                                            <TD></TD>
+                                                                        </TR>
+                                                                        <TR>
+                                                                            <TD>
+                                                                                <SPAN><BR><BR>PC Host Address<BR></SPAN>
+                                                                                <INPUT id="JavaPcHost" name="JavaPcHost" style="width: 360px; color: blue" type="text" value="@ViewBag.JavaPcHost" alwaysenablesilent="true">
+                                                                                <SPAN><BR><BR>OAUTH Host Address<BR></SPAN>
+                                                                                <INPUT id="OAUTHHost" name="OAUTHHost" style="width: 360px; color: blue" type="text" value="@ViewBag.OAUTHHost" alwaysenablesilent="true">
+                                                                                <SPAN><BR><BR>Client ID<BR></SPAN>
+                                                                                <INPUT id="ClientSecureID" name="ClientSecureID" style="width: 360px; color: blue" value="@ViewBag.ClientSecureID" type="text" alwaysenablesilent="true">
+                                                                                <SPAN><BR><BR>Client Secure Key<BR></SPAN>
+                                                                                <INPUT id="ClientSecureKey" name="ClientSecureKey" style="width: 360px; color: blue" value="@ViewBag.ClientSecureKey" type="password" alwaysenablesilent="true">
+                                                                                <div class="hide" id="TestConnectionResult" style="width: 360px;height:21px;color:red">Connection failed.</div>
+                                                                            </TD>
+                                                                        </TR>
+                                                                    </TBODY>
+                                                                </TABLE>
+                                                            </TD>
+                                                        </TR>
+                                                        <TR>
+                                                            <TD></TD>
+                                                        </TR>
+                                                    </TBODY>
+                                                </TABLE>
+                                            </TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD height="1" colSpan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD vAlign="top">
+                                <TABLE style="width:700px" role="presentation" border="0" cellSpacing="0" cellPadding="1" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD height="22" vAlign="top" style="PADDING-TOP: 4px">
+                                                <H3>RMJavaSDK configuration</H3>
+                                            </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>Configure the secureview URL,router URL,AppID,and AppKey for the application to use RMJavaSDK.</TD>
+                                        </TR> 
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                            <TD align="left" vAlign="top">
+                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD width="9px"></TD>
+                                            <TD></TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                            <TD>
+                                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                                    <TBODY>
+                                                        <TR>
+                                                            <TD colSpan="2"><SPAN></SPAN></TD>
+                                                        </TR>
+                                                        <TR>
+                                                            <TD></TD>
+                                                        </TR><!-- End Right_Text -->
+                                                        <TR>
+                                                            <TD width="11px"></TD>
+                                                            <TD width="99%">
+                                                                <TABLE cellSpacing="0" cellPadding="0">
+                                                                    <TBODY>
+                                                                        <TR>
+                                                                            <TD style="padding-bottom: 5px; padding-left: 5px"></TD>
+                                                                        </TR>
+                                                                        <TR>
+                                                                            <TD>
+                                                                                <SPAN><BR><BR>SecureView URL<BR></SPAN>
+                                                                                <INPUT id="SecureViewURL" name="SecureViewURL" style="width: 360px; color: blue" value="@ViewBag.SecureViewURL" type="text" alwaysenablesilent="true">
+                                                                                <SPAN><BR><BR>Router URL<BR></SPAN>
+                                                                                <INPUT id="RouterURL" name="RouterURL" style="width: 360px; color: blue" value="@ViewBag.RouterURL" type="text" alwaysenablesilent="true">
+                                                                                <SPAN><BR><BR>App Id<BR></SPAN>
+                                                                                <INPUT id="AppId" name="AppId" style="width: 360px; color: blue" value="@ViewBag.AppId" type="text" alwaysenablesilent="true">
+                                                                                <SPAN><BR><BR>App Key<BR></SPAN>
+                                                                                <INPUT id="AppKey" name="AppKey" style="width: 360px; color: blue" value="@ViewBag.AppKey" type="password" alwaysenablesilent="true">
+                                                                                <SPAN class="hide"><BR><BR>Tenant Name<BR></SPAN>
+                                                                                <INPUT id="TenantName" class="hide" name="TenantName" style="width: 360px; color: blue" value="@ViewBag.TenantName" type="text" alwaysenablesilent="true">
+                                                                                <SPAN><BR><BR>Certificate Trusted By SkyDrm<BR></SPAN>
+                                                                                <INPUT type="file" id="CertificateFile" name="file" style="display:none" onchange="OnCertificateFileChange()" />
+                                                                                <INPUT id="CertificateFileFileContent" style="display:none" value="@ViewBag.CertContent"></INPUT>
+                                                                                <INPUT type="text" id="CertificateFileFileName" style="width: 275px; color: blue" value="@ViewBag.CertFileName"></INPUT><input type="button" ID="BrowserCertFileButton" Value="Browse..."  Width=85 onclick="document.getElementById('CertificateFile').click()" />
+                                                                                <SPAN><BR><BR>Certificate Password<BR></SPAN>
+                                                                                <INPUT id="CertificatePassword" type="password" style="width: 360px; color: blue" value="@ViewBag.CertPwd"></INPUT>
+                                                                             </TD>
+                                                                        </TR>
+                                                                    </TBODY>
+                                                                </TABLE>
+                                                            </TD>
+                                                        </TR>
+                                                    </TBODY>
+                                                </TABLE>
+                                            </TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD height="1px" colSpan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD vAlign="top">
+                                <TABLE style="width:700px" role="presentation" border="0" cellSpacing="0" cellPadding="1" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD height="22px" vAlign="top" style="padding-top: 4px">
+                                                <H3>Select Column</H3>
+                                            </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>Check to select all columns.</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>Uncheck to specify columns.</TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                            <TD align="left" vAlign="top">
+                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD width="9px"></TD>
+                                            <TD></TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                            <TD>
+                                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                                    <TBODY>
+                                                        <TR>
+                                                            <TD colSpan="2"><SPAN></SPAN></TD>
+                                                        </TR>
+                                                        <TR>
+                                                            <TD width="11px"></TD>
+                                                            <TD width="99%">
+                                                                <TABLE cellSpacing="0" cellPadding="0">
+                                                                    <TBODY>
+                                                                        <TR>
+                                                                            <TD style="padding-bottom: 5px; padding-left:5px"></TD>
+                                                                            <TD></TD>
+                                                                        </TR>
+                                                                        <TR>
+                                                                            <TD>
+                                                                                <BR>
+                                                                                <BR>
+                                                                                <label>
+                                                                                    <input id="SelectAll" type="checkbox" onclick="SelectAllChanged()" />
+                                                                                    Select all columns
+                                                                                </label>
+                                                                                <BR>
+                                                                            </TD>
+                                                                        </TR>
+                                                                    </TBODY>
+                                                                </TABLE>
+                                                            </TD>
+                                                        </TR>
+                                                    </TBODY>
+                                                </TABLE>
+                                            </TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR id="ColumnConfiguration" style="@ViewBag.ColumnStyle">
+                            <TD vAlign="top"> 
+                                <TABLE style="width:700px" role="presentation" border="0" cellSpacing="0" cellPadding="1" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD height="22px" vAlign="top" style="padding-top: 4px">
+                                                <H3>Columns configuration</H3>
+                                            </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>Specify the display names of columns in a list or library. NextLabs Rights Management (RMX) for SharePoint only uses these columns as attributes while performing policy evaluation.</TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                            <TD align="left" vAlign="top">
+                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD width="9px"></TD>
+                                            <TD></TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                            <TD>
+                                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                                    <TBODY>
+                                                        <TR>
+                                                            <TD colSpan="2"><SPAN></SPAN></TD>
+                                                        </TR>
+                                                        <TR>
+                                                            <TD width="11px"></TD>
+                                                            <TD width="99%">
+                                                                <TABLE cellSpacing="0" cellPadding="0">
+                                                                    <TBODY>
+                                                                        <TR>
+                                                                            <TD style="padding-bottom: 5px; padding-left:5px"></TD>
+                                                                            <TD></TD>
+                                                                        </TR>
+                                                                        <TR>
+                                                                            <TD>
+                                                                                <SPAN><BR><BR>Column display names<BR></SPAN>
+                                                                                <TEXTAREA id="ColumnNames" name="ColumnNames" style="height: 100%; width: 360px; color: blue;" rows="3" cols="20"alwaysenablesilent="true">@ViewBag.ColumnNames</TEXTAREA>
+                                                                            </TD>
+                                                                        </TR>
+                                                                    </TBODY>
+                                                                </TABLE>
+                                                            </TD>
+                                                        </TR>
+                                                    </TBODY>
+                                                </TABLE>
+                                            </TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD height="2px" colSpan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD height="10px" colSpan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD colSpan="2">
+                                <TABLE style="width:100%" cellSpacing="0" cellPadding="0">
+                                    <COLGROUP>
+                                        <COL style="width:99%">
+                                        <COL style="width:1%">
+                                    </COLGROUP>
+                                    <TBODY>
+                                        <TR>
+                                            <TD>&nbsp;</TD>
+                                            <TD noWrap>
+                                                <INPUT class="ms-ButtonHeightWidth" type="button" onclick="GeneralSettingSubmit()" value="Save">
+                                            </TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TBODY>
+                </TABLE>
+            </form>
+        </div>
+        <div rel='tab-3' class="tabsdiv">
+            <form id="sitePropertyForm" method="post" action="~/GeneralSetting/SitePropertyFormSubmit" target="fraSubmit">
+                <TABLE border="0" cellSpacing="0" cellPadding="0">
+                    <TBODY>
+                        <TR>
+                            <TD vAlign="top">
+                                <TABLE style="width:700px" role="presentation" border="0" cellSpacing="0" cellPadding="1" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD height="22" vAlign="top" style="PADDING-TOP: 4px">
+                                                <H3>Site propertybag level</H3>
+                                            </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>The Both level indicates the properties of site collection and Subsite will be passed to the Policy Controller for evaluation.</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>The SiteCollection level indicates the properties of site collection will be passed to the Policy Controller for evaluation.</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>The Subsite level indicates that the properties of only the direct parent Subsite will be passed to the Policy Controller for evaluation.</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>The None level indicates there is not site properties passed to the Policy Controller for evaluation.</TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                            <TD align="left" vAlign="top">
+                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD width="9px"></TD>
+                                            <TD></TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                            <TD>
+                                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                                    <TBODY>
+                                                        <TR>
+                                                            <TD colSpan="2"><SPAN></SPAN></TD>
+                                                        </TR>
+                                                        <TR>
+                                                            <TD></TD>
+                                                        </TR><!-- End Right_Text -->
+                                                        <TR>
+                                                            <TD width="11px"></TD>
+                                                            <TD width="99%">
+                                                                <TABLE cellSpacing="0" cellPadding="0">
+                                                                    <TBODY>
+                                                                        <TR>
+                                                                            <TD style="padding-bottom: 5px; padding-left: 5px"></TD>
+                                                                        </TR>
+                                                                        <TR>
+                                                                            <TD>
+                                                                                <SPAN><BR><BR>Level<BR></SPAN>
+                                                                                <select id="Level">
+                                                                                    <option value="Both">Both</option>
+                                                                                    <option value="SiteCollection">SiteCollection</option>
+                                                                                    <option value="Subsite">Subsite</option>
+                                                                                    <option value="None" selected="selected">None</option>
+                                                                                </select>
+                                                                            </TD>
+                                                                        </TR>
+                                                                    </TBODY>
+                                                                </TABLE>
+                                                            </TD>
+                                                        </TR>
+                                                    </TBODY>
+                                                </TABLE>
+                                            </TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD height="1px" colSpan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD vAlign="top">
+                                <TABLE style="width:700px" role="presentation" border="0" cellSpacing="0" cellPadding="1" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD height="22px" vAlign="top" style="padding-top: 4px">
+                                                <H3>Select property</H3>
+                                            </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>Check to select all properties</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>Uncheck to specify site properties</TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                            <TD align="left" vAlign="top">
+                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD width="9px"></TD>
+                                            <TD></TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                            <TD>
+                                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                                    <TBODY>
+                                                        <TR>
+                                                            <TD colSpan="2"><SPAN></SPAN></TD>
+                                                        </TR>
+                                                        <TR>
+                                                            <TD width="11px"></TD>
+                                                            <TD width="99%">
+                                                                <TABLE cellSpacing="0" cellPadding="0">
+                                                                    <TBODY>
+                                                                        <TR>
+                                                                            <TD style="padding-bottom: 5px; padding-left:5px"></TD>
+                                                                            <TD></TD>
+                                                                        </TR>
+                                                                        <TR>
+                                                                            <TD>
+                                                                                <BR>
+                                                                                <BR>
+                                                                                <label>
+                                                                                    <input id="SitePropertySelectAll" type="checkbox" onclick="SitePropertySelectAllChanged()" />
+                                                                                    Select all from site property bag
+                                                                                </label>
+                                                                                <BR>
+                                                                            </TD>
+                                                                        </TR>
+                                                                    </TBODY>
+                                                                </TABLE>
+                                                            </TD>
+                                                        </TR>
+                                                    </TBODY>
+                                                </TABLE>
+                                            </TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR id="SitePropertyConfiguration" style="@ViewBag.SitePropertyStyle">
+                            <TD vAlign="top">
+                                <TABLE style="width:700px" role="presentation" border="0" cellSpacing="0" cellPadding="1" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD height="22px" vAlign="top" style="padding-top: 4px">
+                                                <H3>Site property configuration</H3>
+                                            </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>Specify the properties from site property bag.</TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                            <TD align="left" vAlign="top">
+                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                    <TBODY>
+                                        <TR>
+                                            <TD width="9px"></TD>
+                                            <TD></TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                            <TD>
+                                                <TABLE style="width:100%" role="presentation" border="0" cellSpacing="0" cellPadding="0" summary="">
+                                                    <TBODY>
+                                                        <TR>
+                                                            <TD colSpan="2"><SPAN></SPAN></TD>
+                                                        </TR>
+                                                        <TR>
+                                                            <TD width="11px"></TD>
+                                                            <TD width="99%">
+                                                                <TABLE cellSpacing="0" cellPadding="0">
+                                                                    <TBODY>
+                                                                        <TR>
+                                                                            <TD style="padding-bottom: 5px; padding-left:5px"></TD>
+                                                                            <TD></TD>
+                                                                        </TR>
+                                                                        <TR>
+                                                                            <TD>
+                                                                                <SPAN><BR><BR>Property names<BR></SPAN>
+                                                                                <TEXTAREA id="SitePropertyNames" name="PropertyNames" style="height: 100%; width: 360px; color: blue;" rows="3" cols="20" alwaysenablesilent="true">@ViewBag.SitePropertyNames</TEXTAREA>
+                                                                            </TD>
+                                                                        </TR>
+                                                                        <TR>
+                                                                            <TD>
+                                                                                <SPAN><BR><BR>Mapped names<BR></SPAN>
+                                                                                <TEXTAREA id="SitePropertyMapedNames" name="MapedNames" style="height: 100%; width: 360px; color: blue;" rows="3" cols="20" alwaysenablesilent="true">@ViewBag.SitePropertyMapedNames</TEXTAREA>
+                                                                            </TD>
+                                                                        </TR>
+                                                                    </TBODY>
+                                                                </TABLE>
+                                                            </TD>
+                                                        </TR>
+                                                    </TBODY>
+                                                </TABLE>
+                                            </TD>
+                                            <TD width="10px"></TD>
+                                        </TR>
+                                        <TR>
+                                            <TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD height="2px" colSpan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD height="10px" colSpan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD colSpan="2">
+                                <TABLE style="width:100%" cellSpacing="0" cellPadding="0">
+                                    <COLGROUP>
+                                        <COL style="width:99%">
+                                        <COL style="width:1%">
+                                    </COLGROUP>
+                                    <TBODY>
+                                        <TR>
+                                            <TD>&nbsp;</TD>
+                                            <TD noWrap>
+                                                <INPUT class="ms-ButtonHeightWidth" type="button" onclick="SitePropertySubmit()" value="Save">
+                                            </TD>
+                                        </TR>
+                                    </TBODY>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TBODY>
+                </TABLE>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    tabs_takes.init("tabs");
+    var setting = {
+        view: {
+            dblClickExpand: false,
+            showLine: true,
+            fontCss: { 'color': 'black', 'font-weight': 'bold' },
+            selectedMulti: true 
+        },
+        async:{
+            enable:true,
+            url:"/GeneralSetting/AsyncSubSiteNode?SPHostUrl=" + getQueryString("SPHostUrl"),
+            autoParam:["id","isParent"],
+            dataType:"json"
+        },
+        check: {
+            chkboxType: { "Y": "s", "N": "s" },
+            chkStyle: "checkbox",
+            enable: true 
+        },
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "id",
+                pIdKey: "pId",
+                rootPId: 0
+            }
+        },
+        callback:{
+            onAsyncSuccess: zTreeOnAsyncSuccess
+        }
+    };
+    var jsonData =@Html.Raw(Json.Encode(@ViewBag.data));
+    var data = JSON.parse(jsonData);
+    $(document).ready(function () {
+        $.fn.zTree.init($("#regionZTree"), setting,  data);
+        var zTree = $.fn.zTree.getZTreeObj("regionZTree");
+        var nodes = zTree.getNodes();
+        if(nodes.length>0){
+            for(var i=0;i<nodes.length;i++){
+                zTree.expandNode(nodes[i], true, false, false);
+            }
+        }
+        var rootNode = zTree.getNodesByFilter(function (node) { return node.level == 0 }, true);
+        asyncSubNode(zTree,rootNode);
+    });
+    function asyncSubNode(zTree,rootNode){
+        var subsiteNode = zTree.getNodesByFilter(function (node) { return node.isParent == true }, false,rootNode);
+        for(var i =0;i<subsiteNode.length;i++){
+            zTree.reAsyncChildNodes(subsiteNode[i],"refresh","",zTreeOnAsyncSuccess)
+        }
+    }
+    function zTreeOnAsyncSuccess(event, treeId, treeNode, msg){
+        if(treeNode){
+            var zTree = $.fn.zTree.getZTreeObj("regionZTree");
+            asyncSubNode(zTree,treeNode);
+        }
+    }
+    function GeneralSettingSubmit() {
+        var obj ={
+            JavaPcHost:$("#JavaPcHost")[0].value,
+            OAUTHHost:$("#OAUTHHost")[0].value,
+            ClientSecureID:$("#ClientSecureID")[0].value,
+            ClientSecureKey:$("#ClientSecureKey")[0].value,
+            SecureViewURL:$("#SecureViewURL")[0].value,
+            RouterURL:$("#RouterURL")[0].value,
+            AppId:$("#AppId")[0].value,
+            AppKey:$("#AppKey")[0].value,
+            TenantName:$("#TenantName")[0].value,
+            SelectAll:$("#SelectAll").is(':checked'),
+            ColumnNames:$("#ColumnNames")[0].value,
+            CertificatefileContent:$("#CertificateFileFileContent")[0].value,
+            CertificatefileName:$("#CertificateFileFileName")[0].value,
+            CertificatefilePassword:$("#CertificatePassword")[0].value
+        };
+        if(obj.JavaPcHost==""||obj.OAUTHHost==""||obj.ClientSecureID==""||obj.ClientSecureKey==""||obj.RouterURL==""||obj.AppId==""||obj.AppKey=="")
+        {
+            alert("Please complete the information");
+            return;
+        }
+        obj.ColumnNames = obj.ColumnNames.replace(/\r\n/g,",");
+        obj.ColumnNames = obj.ColumnNames.replace(/\n/g,",");
+        $.ajax({
+            type: "POST",
+            data:obj,
+            url: "/GeneralSetting/GeneralSettingFormSubmit?SPHostUrl=" + getQueryString("SPHostUrl") ,
+            success: function (data) {
+                if(data=="test connection failed")
+                {
+                    $("#TestConnectionResult")[0].classList.remove("hide");
+                }
+                else{
+                    $("#TestConnectionResult")[0].classList.add("hide");
+                    alert(data);
+                }
+                ZENG.msgbox.hide();
+            },
+            error: function () { alert("failed to save data!"); ZENG.msgbox.hide();}
+        });
+        ZENG.msgbox.show("saving...please wait",6);
+    }
+    function EnforceEntitySubmit(){
+        var jsondata =[];
+        var zTree = $.fn.zTree.getZTreeObj("regionZTree");
+        var node = zTree.getNodes();
+        var nodes = zTree.transformToArray(node);
+        var domainValue =$("#domainValue")[0].value;
+        for(var i = 0;i<nodes.length;i++)
+        {
+            var obj = {};
+            obj.id = nodes[i].id;
+            obj.pId = nodes[i].pId;
+            obj.name = nodes[i].name;
+            obj.checked = nodes[i].checked;
+            obj.isParent = nodes[i].isParent;
+            obj.isLoaded = nodes[i].isLoaded;
+            jsondata.push(obj);
+        }
+        var data = {"znodeList":jsondata,"domain":domainValue};
+        $.ajax({
+            type: "POST",
+            data:data, 
+            dataType: "json",
+            url: "/GeneralSetting/EnforceEntityFormSubmit?SPHostUrl=" + getQueryString("SPHostUrl"),
+            success: function (data) { alert(data);ZENG.msgbox.hide();},
+            error: function () { alert("failed to save data!"); ZENG.msgbox.hide();}
+        });
+        ZENG.msgbox.show("saving...please wait",6);
+    }
+    
+    function SitePropertySubmit(){
+        var SitePropertyLevel = document.getElementById("Level").selectedIndex;
+        var SitePropertySelectAll = $("#SitePropertySelectAll").is(':checked');
+        var SitePropertyNames = $("#SitePropertyNames")[0].value.replace(/\r\n/g,",").replace(/\n/g,",");
+        var SitePropertyMapedNames = $("#SitePropertyMapedNames")[0].value.replace(/\r\n/g,",").replace(/\n/g,",");
+        $.ajax({
+            type: "POST",
+            data: { "SitePropertyLevel": SitePropertyLevel, "SitePropertySelectAll": SitePropertySelectAll, "SitePropertyNames": SitePropertyNames, "SitePropertyMapedNames": SitePropertyMapedNames },
+            url: "/GeneralSetting/SitePropertySubmit?SPHostUrl=" + getQueryString("SPHostUrl"),
+            success: function (data) {
+                alert(data);
+                ZENG.msgbox.hide();
+            },
+            error: function () {
+                alert("failed to save data!");
+            }
+        });
+        ZENG.msgbox.show("saving...please wait",6);
+    }
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    var selectAllStatus = '@ViewBag.SelectAll';
+    if( selectAllStatus == "true")
+    {
+        $("#SelectAll").prop("checked", true);
+    }
+    else
+    {
+        $("#SelectAll").prop("checked", false);
+    }
+
+    var sitePropertyselectAllStatus = '@ViewBag.SitePropertySelectAll';
+    if( sitePropertyselectAllStatus == "true")
+    {
+        $("#SitePropertySelectAll").prop("checked", true);
+    }
+    else
+    {
+        $("#SitePropertySelectAll").prop("checked", false);
+    }
+
+    var sitePropertyselectAllStatus = '@ViewBag.SitePropertyLevel';
+    if(sitePropertyselectAllStatus != "")
+    {
+        $("#Level").prop("selectedIndex", sitePropertyselectAllStatus);
+    }
+
+    function SelectAllChanged() {
+        if(document.getElementById("SelectAll").checked == true)
+        {
+            document.getElementById("ColumnConfiguration").style.display="none";
+        }
+        else
+        {
+            document.getElementById("ColumnConfiguration").style.display="";
+        }
+    }
+
+    function SitePropertySelectAllChanged() {
+        if(document.getElementById("SitePropertySelectAll").checked == true)
+        {
+            document.getElementById("SitePropertyConfiguration").style.display="none";
+        }
+        else
+        {
+            document.getElementById("SitePropertyConfiguration").style.display="";
+        }
+    }
+
+    function OnCertificateFileChange()
+    {
+        var certFileInput = document.getElementById('CertificateFile');
+        var certFile = certFileInput.files[0];
+        var fr = new FileReader();
+        fr.readAsArrayBuffer(certFile);
+        fr.onload = function(){
+            var binary = '';
+            var buffer = this.result;
+            var bytes = new Uint8Array( buffer );
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode( bytes[ i ] );
+            }
+            var certFileInput = document.getElementById('CertificateFile');
+            document.getElementById('CertificateFileFileContent').value= window.btoa( binary );
+            document.getElementById('CertificateFileFileName').value=certFileInput.files[0].name;
+        }
+    }
+</script>
+

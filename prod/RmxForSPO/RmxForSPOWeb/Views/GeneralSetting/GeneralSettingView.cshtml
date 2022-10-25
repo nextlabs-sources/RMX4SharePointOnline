@@ -1,0 +1,102 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Configuration</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/generalSetting.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/msgbox.css" />
+</head>
+<body>
+    <header class="header">
+        <a href="javascript:history.back(-1)">NextLabs Rights Management setup</a>
+        <span></span>
+        <label>Configuration</label>
+    </header>
+    <section class="title">
+        <h2>Configuration</h2>
+    </section>
+    <section>
+        <div class="left">
+            <h3>Policy Controller configuration</h3>
+            <p>Specify the host and port information for Control Center and Policy Controller, Client ID and Client secure key.</p>
+        </div>
+        <div class="right">
+            <ul>
+                <li>
+                    <label>Policy Controller host address</label>
+                    <input id="JavaPcHost" name="JavaPcHost" value="@ViewBag.JavaPcHost"/>
+                </li>
+                <li>
+                    <label>Control Center host address</label>
+                    <input id="OAUTHHost" name="OAUTHHost" value="@ViewBag.OAUTHHost"/>
+                </li>
+                <li>
+                    <label>Client ID</label>
+                    <input id="ClientSecureID" name="ClientSecureID" value="@ViewBag.ClientSecureID"/>
+                </li>
+                <li>
+                    <label>Client secure key</label>
+                    <input id="ClientSecureKey" name="ClientSecureKey" value="@ViewBag.ClientSecureKey" type="password"/>
+                </li>
+                <li>
+                    <div class="hide" id="TestConnectionResult" style="width: 360px;height:21px;color:red">Connection failed.</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div class="left">
+            <h3>Rights Management Server (RMS) configuration</h3>
+            <p>Specify the RMS host URL, router URL, App ID, App Key, and Certificate information.</p>
+        </div>
+        <div class="right">
+            <ul>
+                <li>
+                    <label>RMS host URL</label>
+                    <input id="SecureViewURL" name="SecureViewURL" value="@ViewBag.SecureViewURL"/>
+                </li>
+                <li>
+                    <label>Router URL</label>
+                    <input id="RouterURL" name="RouterURL" value="@ViewBag.RouterURL"/>
+                </li>
+                <li>
+                    <label>App ID</label>
+                    <input id="AppId" name="AppId" value="@ViewBag.AppId" />
+                </li>
+                <li>
+                    <label>App key</label>
+                    <input id="AppKey" name="AppKey" value="@ViewBag.AppKey" type="password"/>
+                </li>
+                <li>
+                    <label>Certificate file</label>
+                    <div>
+                        <input type="file" id="CertificateFile" name="file" style="display:none" onchange="OnCertificateFileChange()" />
+                        <input id="CertificateFileFileContent" style="display:none" value="@ViewBag.CertContent"></input>
+                        <input type="text" id="CertificateFileFileName" style="width: 275px; color: blue" value="@ViewBag.CertFileName"></input>
+                        <input type="button" id="BrowserCertFileButton" value="Browse..." onclick="document.getElementById('CertificateFile').click()" />
+                    </div>
+                </li>
+                <li>
+                    <label>Certificate password</label>
+                    <input type="password" id="CertificatePassword" value="@ViewBag.CertPwd"/>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="btns">
+        <div id="btns">
+            <button class="save" onclick="GeneralSettingSubmit()" >Save</button>
+            <button class="cancel" onclick="onCancelClick()">Cancel</button>
+        </div>
+    </section>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/msgbox.js"></script>
+    <script src="~/Scripts/configuration.js"></script>
+</body>
+</html>

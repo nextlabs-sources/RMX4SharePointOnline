@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GuideView</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <style>
+        body {
+            margin:0;
+            padding:0;
+        }
+        h1 {
+            padding: 10px 10px 5px;
+            border-width: 0 0 1px;
+            border-style: solid;
+            border-color: #676767;
+            font-size: 25px;
+            color: #003759;
+        }
+
+        div.guide-index {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            margin: 20px 40px;
+        }
+
+        div.guide-index > h2 {
+            font-size: 16px;
+            color: #77778D;
+        }
+
+        div.guide-index > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        div.guide-index > div > a {
+            width: 160px;
+            padding: 8px;
+            cursor: pointer;
+            color: #0072C6;
+        }
+
+        div.guide-index > div > a:hover {
+            text-decoration: solid #0072C6;
+        }
+    </style>
+</head>
+<body>
+    <h1>NextLabs Rights Management setup</h1>
+    <div class="guide-index">
+        <h2>Guide index</h2> 
+        <div>
+            <a id="GeneralSettingView" onclick="GotoGeneral()">Configuration</a>
+            <a id="ActivateView" onclick="GotoActivate()">Activation</a>
+            <a id="SiteSettingView" onclick="GotoSiteSetting()">Site property</a>
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    function GotoGeneral() {
+        window.location.href = '/GeneralSetting/GuideView?SPHostUrl=' + getQueryString("SPHostUrl") + "&TargetView=GeneralSettingView";
+    }
+    function GotoActivate() {
+        window.location.href = '/GeneralSetting/GuideView?SPHostUrl=' + getQueryString("SPHostUrl") + "&TargetView=ActivateView";
+    } function GotoSiteSetting() {
+        window.location.href = '/GeneralSetting/GuideView?SPHostUrl=' + getQueryString("SPHostUrl") + "&TargetView=SiteSettingView";
+    }
+</script>

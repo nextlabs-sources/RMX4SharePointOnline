@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+<!--
+<CustomAction Id="40b20aa0-402a-49b3-b302-05504f520dda.RibbonCustomAction2"
+              Location="CommandUI.Ribbon"
+              Title="Nextlabs Security View"
+              Sequence="10001">
+  <CommandUIExtension>
+    <CommandUIDefinitions>
+      <CommandUIDefinition Location="Ribbon.Documents.Manage.Controls._children">
+        <Button Id="Ribbon.Documents.Manage.RibbonCustomAction2Button"
+                Alt="Nextlabs Security View"
+                Sequence="10001"
+                CommandType="OptionSelection"
+                Command="Invoke_RibbonCustomAction2ButtonRequest"
+                LabelText="Nextlabs Security View"
+                TemplateAlias="o1"
+                Image32by32="~remoteAppUrl/Content/img/NextLabsSecureViewer.png"
+                Image16by16="~remoteAppUrl/Content/img/nxl.png"
+                />
+      </CommandUIDefinition>
+    </CommandUIDefinitions>
+    <CommandUIHandlers>
+      <CommandUIHandler Command="Invoke_RibbonCustomAction2ButtonRequest"
+                        CommandAction="~remoteAppUrl/?{StandardTokens}&amp;SPListItemId={SelectedItemId}&amp;SPListId={SelectedListId}"
+                        EnabledScript="javascript:function enable(){ return false;}enable();"
+                        />
+    </CommandUIHandlers>
+  </CommandUIExtension >
+</CustomAction>
+ --> 
+<!-- can't use this script to added js. need use C# code to added js:
+
+<CustomAction Id="Ribbon.Library.Actions.Scripts"
+	  Location="ScriptLink"
+	  ScriptSrc="~remoteAppUrl/Scripts/Encrypt.public.js" />
+    -->
+  
+</Elements>

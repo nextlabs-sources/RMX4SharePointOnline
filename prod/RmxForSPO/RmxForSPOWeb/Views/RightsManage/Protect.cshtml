@@ -1,0 +1,283 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NextLabs Rights Protection</title>
+    <style>
+        .catoryContextButton {
+            padding: 7px 10px;
+            border: 1px solid rgb(171, 171, 171);
+            background-color: rgb(255, 255, 255);
+            margin-left: 10px;
+            font-family: "Segoe UI", Segoe, Tahoma, Helvetica, Arial, sans-serif;
+            color: rgb(68, 68, 68);
+        }
+        .ms-ButtonHeightWidth {
+            width: 6em;
+            font: 8pt tahoma;
+            height: 2.6em;
+            background-color: rgb(253, 253, 253);
+            margin-left: 10px;
+            font-family: "Segoe UI", Segoe, Tahoma, Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(171, 171, 171);
+            border-image: initial;
+        }
+      .fileTitle{
+        padding: 10px;
+        margin-bottom: 0;
+        background-color: #EFF0F2;
+        word-break: break-all;
+        }
+
+          .btn {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    min-Width:92px;
+    background:#ffffff;
+}
+
+    </style>
+</head>
+<body style="background-color:#ffffff;width:100%;font-family:'Segoe UI', 'Segoe', Tahoma, Helvetica, Arial,sans-serif;">
+    <div> 
+        <div id="nextlabs" style="background-color:#1a4994;width:100%;">
+            <img src="~/Content/NextLabs.png" />
+        </div>
+        <h2>NextLabs Rights Management</h2>
+        <div style="text-align: center;max-width:500px">
+            <input type="text" id="BackSite" name="BackSite" style="display:none" value="@ViewBag.BackSiteUrl" />
+            <div class="fileTitle">
+                <p style="max-width: 500px; margin: 0px;">
+                    <b id="FileName" style="font-weight: 700;">Protect File:&nbsp;&nbsp;@ViewBag.fileName &nbsp;&nbsp; @ViewBag.protectResult</b>
+                </p>
+               
+            </div>
+
+            @{ 
+                if (ViewBag.classifyData!=null)
+                {
+
+            <div style="max-width: 500px;">
+                <div style="font-weight: 700;">Company-defined Rights </div>
+                <div>Company-defined rights are permissions determined by centralized policies defined by your administrator.</div>  
+                <div style="text-align: left; margin:10px; padding: 0 20px; background: #FFFCDE; border: 1px solid #FFF68A; box-sizing: border-box; border-radius: 3px; overflow: hidden; min-width: 250px" class="ng-scope">
+                    @{
+                        foreach (var classifyCategory in ViewBag.classifyData.categories)
+                        {
+                            <div class="ng-scope">
+                                <div class="col-xs-12 no-padding">
+                                    <div class="col-xs-12 inline-block" style="background-color:#FFFCDE; margin: 0 0 20px 0; padding:10px 0px 5px 0px;">
+                                        <label style="margin-right:5px" name="tagCategory" multisel="@classifyCategory.multiSel.ToString()" mandatory="@classifyCategory.mandatory.ToString()"><b class="ng-binding">@classifyCategory.name</b></label>
+                                    </div>
+                                    <div style="background-color:#ECECF1; padding:20px; margin-bottom:20px">
+                                        <div ng-if="showAllLabels" class="ng-scope">
+
+                                            @{
+                                                foreach (var label in classifyCategory.labels)
+                                                {
+                                                    <span data-ng-repeat="label in category.labels" class="ng-scope">
+                                                        <button class="catoryContextButton btn btn-default button-paddings ng-binding" name="tagLabel" category="@classifyCategory.name" selectstatus="0" onclick="OnTagLabelClick(this)">@label.name</button>
+                                                    </span>
+                                                }
+                                            }
+
+                                        </div><!-- end ngIf: showAllLabels -->
+                                    </div>
+                                </div>
+                            </div>
+                                                }
+
+                    }
+                </div>    
+            </div>
+            
+               
+
+                <form action="/RightsManage/Protect/submit?SPHostUrl=@ViewBag.SPHostUrl" method="post" onsubmit="return CheckClassifyResult();">
+                    <input type="submit" class="ms-ButtonHeightWidth" value="Protect">
+                    <input type="button" class="ms-ButtonHeightWidth" value="Cancel" onclick="GoBack()"/>
+                    <input type="text" ID="classifyResult" name="classifyResult" Width="600" style="display:none" value=""/>
+                    <input type="text" ID="itemId" name="itemId" Width="600" style="display:none" value="@ViewBag.itemId"/>
+                    <input type="text" ID="listId" name="listId" Width="600" style="display:none" value="@ViewBag.listId"/>
+                    <input type="text" ID="listId" name="siteUrl" Width="600" style="display:none" value="@ViewBag.siteUrl"/>
+                </form>
+               }
+            }
+            </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+
+    var colorTagLabelSel = "#399649";
+    var colorTagLabelNormal = "#ffffff";
+
+    function TagInfo() {
+        this.tagname = "";
+        this.tagvalue = new Array();
+    }
+    function GoBack()
+    {
+        var backSiteUrl = document.getElementById("BackSite").value;
+        window.location.href = backSiteUrl;
+    }
+
+
+    //IE can't get by button's "name" attribute 
+    var getElementsByName = function (tag, name) {
+        var returns = document.getElementsByName(name);
+        if (returns.length > 0) return returns;
+        returns = new Array();
+        var e = document.getElementsByTagName(tag);
+        for (var i = 0; i < e.length; i++) {
+            if (e[i].getAttribute("name") == name) {
+                returns[returns.length] = e[i];
+            }
+        }
+        return returns;
+    }
+
+    function StringToBool(str) {
+        return str.toLowerCase() == "true";
+    }
+
+    function OnTagLabelClick(obj) {
+
+        //check if it can be multi-sel
+        var categoryName = obj.getAttribute("category");
+        var categoryList = getElementsByName("lable", "tagCategory");
+        var bMultiSel = false;
+        for (iCategory = 0; iCategory < categoryList.length; iCategory++) {
+            var categoryNode = categoryList[iCategory];
+            if (categoryNode.innerText == categoryName) {
+                bMultiSel = StringToBool(categoryNode.getAttribute("multisel"));
+                break;
+            }
+        }
+
+        //change select status
+        if (obj.getAttribute("selectstatus") == 0) {
+            obj.setAttribute("selectstatus", 1);
+            obj.style.backgroundColor = colorTagLabelSel;
+
+            if (!bMultiSel) {
+                //unselect other
+                var labelList = getElementsByName("button", "tagLabel");
+                for (iLabel = 0; iLabel < labelList.length; iLabel++) {
+                    var varlabel = labelList[iLabel];
+                    if ((varlabel.getAttribute("category") == categoryName) &&
+                        (varlabel.innerText != obj.innerText) &&
+                        (varlabel.getAttribute("selectstatus") == 1)) {
+                        varlabel.setAttribute("selectstatus", 0);
+                        varlabel.style.backgroundColor = colorTagLabelNormal;
+                    }
+                }
+            }
+
+        }
+        else {
+            obj.setAttribute("selectstatus", 0);
+            obj.style.backgroundColor = colorTagLabelNormal;
+        }
+
+    }
+
+
+    function FindTagInfoByName(classifyResult, categoryName) {
+        for (i = 0; i < classifyResult.length; i++) {
+            var tagInfo = classifyResult[i];
+            if (tagInfo.tagname == categoryName) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    function CheckClassifyResult() {
+        //get classify value
+        var ClassifyResult = new Array();
+
+        //get all labels
+        var labelList = getElementsByName("button", "tagLabel");
+        for (iLabel = 0; iLabel < labelList.length; iLabel++) {
+
+            var varlabel = labelList[iLabel];
+            if (varlabel.getAttribute("selectstatus") == 0) {
+                continue;
+            }
+
+            var categoryName = varlabel.getAttribute("category");
+            var lable = varlabel.innerText;
+            var nIndex = FindTagInfoByName(ClassifyResult, categoryName);
+            var classifyValueInfo = null;
+            if (nIndex < 0) {
+                classifyValueInfo = new TagInfo();
+                classifyValueInfo.tagname = categoryName;
+                classifyValueInfo.tagvalue.push(lable);
+
+                ClassifyResult.push(classifyValueInfo);
+            }
+            else {
+                classifyValueInfo = ClassifyResult[nIndex];
+                classifyValueInfo.tagvalue.push(lable);
+            }
+
+        }
+
+        //get all category, and check if user select lebel for this category
+        var bError = false;
+        var categoryList = getElementsByName("label", "tagCategory");  // document.getElementsByName("tagCategory");
+        for (iCategory = 0; iCategory < categoryList.length; iCategory++) {
+            var varCategory = categoryList[iCategory];
+
+            var isMandatory = StringToBool(varCategory.getAttribute("mandatory"));
+            if (isMandatory) {
+                var categoryName = varCategory.innerText;
+                var nIndex = FindTagInfoByName(ClassifyResult, categoryName);
+                if (nIndex < 0) {
+                    bError = true;
+                    alert("you must select a value for: " + categoryName);
+                    break;
+                }
+            }
+        }
+
+
+        if (bError) {
+            return false;
+        }
+
+        //set classify value
+        document.getElementById("classifyResult").value = JSON.stringify(ClassifyResult);
+
+        return true;
+
+    }
+
+
+</script>

@@ -1,0 +1,249 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font-family:'Segoe UI', 'Segoe', Tahoma, Helvetica, Arial,sans-serif;
+    font-size: 12px;
+}
+
+.header {
+    padding: 20px 0 5px;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: #676767;
+}
+
+.header a {
+    float: left;
+    font-size: 25px;
+    color: #003759;
+    margin-right: 15px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+
+.header a:visited {
+    color: #B10069;
+}
+
+.header span {
+    float: left;
+    width: 0;
+    height: 0;
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #333;
+    margin-top: 12px;
+}
+
+.header label {
+    margin-left: 15px;
+    font-size: 25px;
+    color: #5D6878;
+}
+
+section.title h2:first-of-type {
+    margin: 30px 0 5px 155px;
+    font-size: 2.46em;
+    font-weight: 700;
+}
+
+section.title h2:last-of-type {
+    margin: 10px 0 10px 155px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+#table {
+    margin-left: 155px;
+    max-width: 900px;
+    margin-bottom: 30px;
+    border: 2px solid grey;
+    box-sizing: border-box;
+}
+
+#table ul.table {
+    display: flex;
+}
+
+#table ul.table > li {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+#table ul.table li.desc {
+    border-right: 2px solid grey;
+    box-sizing: border-box;
+    min-width: 300px;
+}
+
+#table ul.table li.operation {
+    width: 390px;
+    min-width: 300px;
+}
+
+#table ul.table li.desc > div, #table ul.table li.operation > div {
+    padding: 30px;
+    border-bottom: 2px solid grey;
+    height: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#table ul.table li.operation > div {
+    align-items: center;
+    justify-content: center;
+}
+
+#table ul.table li.desc > div:last-of-type {
+    border: none;
+    height: 315px;
+}
+
+#table ul.table li.operation > div:last-of-type{
+    border: none;
+    height: 375px;
+    padding: 0;
+}
+
+#table ul.table li.desc > div h4 {
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: #4c4c4c;
+    font-weight: 700;
+}
+
+#table ul.table li.desc > div p{
+    font-size: 1em;
+    color: #4c4c4c;
+}
+
+
+
+
+.switch{
+    width:40px;
+    height:20px;
+    border-radius:30px;
+    overflow: hidden;
+    vertical-align:middle;
+    position:relative;
+    display: inline-block;
+    background:#ccc;
+    box-shadow: 0 0 1px #36a6d4;
+}
+.switch input{
+    visibility: hidden;
+}
+.switch span{
+    position:absolute;
+    top:0;
+    left:0;
+    border-radius: 50%;
+    background:#fff;
+    width:50%;
+    height:100%;
+    transition:all linear 0.2s;
+}
+.switch span::before{
+    position: absolute;
+    top:0;
+    left:-100%;
+    content:'';
+    width:200%;
+    height:100%;
+    border-radius: 30px;
+    background:#36a6d4;
+}
+.switch span::after{
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    border-radius: 50%;
+    background:#fff;
+}
+.switch input:checked +span{
+    transform:translateX(100%);
+}
+
+#box {
+    width: 100%;
+    height: 100%;
+}
+
+#box .title {
+    height: 40px;
+    line-height: 40px;
+    background-color: #eee;
+}
+
+#box .title > input {
+    margin: 0 10px;
+    position: relative;
+    top: 2px;
+}
+
+#box .title > span {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#box .list {
+    height: calc(100% - 40px);
+    overflow-x: auto;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    padding: 10px 20px 20px;
+}
+
+#box .list > li {
+    height: 20px;
+    margin-bottom: 5px;
+    line-height: 20px;
+    white-space: nowrap;
+}
+
+#box .list > li > input{
+    margin: 0 10px;
+    position: relative;
+    top: 2px;
+}
+
+#box .list > li > label {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+
+
+#btns {
+    margin-left: 155px;
+}
+
+#btns button {
+    display: inline-block;
+    font-size: 11px;
+    min-width: 6em;
+    padding: 7px 10px;
+    border: 1px solid #ABABAB;
+    background-color: #FFF;
+}
+
+#btns button:hover {
+    background-color: rgb(230, 242, 250);
+    border-color: rgb(146, 192, 224);
+}
+
+#btns .save {
+    margin-right: 15px;
+}
